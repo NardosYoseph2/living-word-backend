@@ -19,18 +19,18 @@ async function fetchEventbyID(eventID) {
   const event = await Event.findOne({_id:eventID});
   return event;
 }
-async function buyTicket(eventId, userId) {
-  dbConnection; 
-  const eventPurchased= await Event.findOneAndUpdate(
-    { _id: eventId },
-    { $inc: { availableTickets: -1 }, $push: { attendees: userId } },
-    { new: true } 
-  );
-  if (User.schema.paths.events) { 
-    await User.findByIdAndUpdate(userId, { $push: { events: eventId } });
-  }
-  return eventPurchased;
-}
+// async function buyTicket(eventId, userId) {
+//   dbConnection; 
+//   const eventPurchased= await Event.findOneAndUpdate(
+//     { _id: eventId },
+//     { $inc: { availableTickets: -1 }, $push: { attendees: userId } },
+//     { new: true } 
+//   );
+//   if (User.schema.paths.events) { 
+//     await User.findByIdAndUpdate(userId, { $push: { events: eventId } });
+//   }
+//   return eventPurchased;
+// }
 
 async function searchEvent(searchTerm) {
   dbConnection; 
@@ -49,5 +49,4 @@ module.exports = {
   fetchEvent,
   searchEvent,
   fetchEventbyID,
-  buyTicket
 };

@@ -24,14 +24,13 @@ async function fetchEvent(req, res) {
           description: event._doc.description,
           date: event._doc.date,
           time: event._doc.time,
-          rate: event._doc.rate,
-          people: event._doc.people,
+         // people: event._doc.people,
           image:  event._doc.image,
-          price: event._doc.price,
-          availableTickets:event._doc.availableTickets,
-          eventorganizer:event._doc.eventorganizer,
-         attendees:event._doc.attendees,
-         status:event._doc.status
+         // price: event._doc.price,
+          //availableTickets:event._doc.availableTickets,
+          //eventorganizer:event._doc.eventorganizer,
+         //attendees:event._doc.attendees,
+         //status:event._doc.status
 
         }; 
       }));
@@ -55,16 +54,16 @@ async function fetchEventbyID(req, res) {
   }
 }
 
-async function buyTicket(eventId, userId) {
-  try {
-    const eventPurchased = await eventService.buyTicket(eventId,userId);
-    console.log('Ticket purchased successfully!');
-    return eventPurchased;
+// async function buyTicket(eventId, userId) {
+//   try {
+//     const eventPurchased = await eventService.buyTicket(eventId,userId);
+//     console.log('Ticket purchased successfully!');
+//     return eventPurchased;
  
-  } catch (error) {
-    console.error('Error purchasing ticket:', error);
-  }
-}
+//   } catch (error) {
+//     console.error('Error purchasing ticket:', error);
+//   }
+// }
 
 async function searchEvent(req, res) {
   const searchTerm = req.query.q; // Access search term from query parameter
@@ -84,6 +83,5 @@ module.exports = {
   createEvent,
   fetchEvent,
   searchEvent,
-  fetchEventbyID,
-  buyTicket
+  fetchEventbyID
 }

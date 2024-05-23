@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
 require ('dotenv').config();
-// MongoDB connection URI
-// const uri = 'mongodb+srv://nardos:nardi123@event.bb6br8p.mongodb.net/'; // Change 'myDatabase' to your database name
 const uri = process.env.MONGO_URI;
 // Connect to MongoDB
 mongoose.connect(uri)
