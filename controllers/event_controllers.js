@@ -26,6 +26,8 @@ async function fetchEvent(req, res) {
           time: event._doc.time,
          // people: event._doc.people,
           image:  event._doc.image,
+          adress: event._doc.adress,
+          catagory:event._doc.catagory
          // price: event._doc.price,
           //availableTickets:event._doc.availableTickets,
           //eventorganizer:event._doc.eventorganizer,
