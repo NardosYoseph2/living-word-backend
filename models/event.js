@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const eventSchema = new mongoose.Schema({
   title: {type: String ,unique:false, required: true},
     description: {type: String ,unique:false, required: false},
-    catagory:{type: String,unique:false,required:true},
+    category:{type: String,unique:false,required:true},
     date: {type: Date ,unique:false, required: true},
     time:{type: String ,unique:false, required: true},
-    adress:{type: String ,unique:false, required: true},
+    address:{type: String ,unique:false, required: true},
     // rate: {type: Number ,unique:false, required: true},
     //price: {type: Number ,unique:false, required: false},
     //availableTickets: {type: Number ,unique:false, required: true},
