@@ -7,4 +7,6 @@ mongoose.connect(uri)
   .then(() => console.log('Connected to MongoDB'))
   .catch(error => console.error('Error connecting to MongoDB:', error));
  // client.close();
+ mongoose.set('bufferCommands', false);
+
 module.exports = mongoose.connection;
