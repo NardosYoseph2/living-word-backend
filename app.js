@@ -6,7 +6,7 @@ const paymentRoutes = require('./routes/payment_route');
 const cors = require('cors');
 
 app.use(express.json()); // Parse JSON request bodies
-app.use(cors({ origin: ['http://localhost:3000', 'http://172.16.35.39:3000'] }));
+//  app.use(cors({ origin: ['http://localhost:3000', 'http://172.16.35.39:3000'] }));
  
 app.use('/public', express.static(__dirname + "/public"))
 // Mount user routes
