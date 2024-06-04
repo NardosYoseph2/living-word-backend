@@ -47,11 +47,24 @@ async function fetchEvent(req, res) {
 async function fetchEventbyID(req, res) {
   try {
       const event = await eventService.fetchEventbyID(req.body.id);
-    console.error('Event fetched successfully');
+    console.log('Event fetched successfully');
 
       res.status(200).json({ message: 'Event fetched successfully',event: event });
   } catch (err) {
     console.error('Error fetching event:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+
+async function deleteEvent(req, res) {
+  try {
+      const event = await eventService.deleteEvent(req.body.id);
+    console.log('Event deleted successfully');
+
+      res.status(200).json({ message: 'Event deleted successfully',event: event });
+  } catch (err) {
+    console.error('Error deleting event:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 }
@@ -85,5 +98,6 @@ module.exports = {
   createEvent,
   fetchEvent,
   searchEvent,
+  deleteEvent,
   fetchEventbyID
 }
