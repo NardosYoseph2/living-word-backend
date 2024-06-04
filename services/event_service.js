@@ -40,5 +40,5 @@ module.exports = {
   createEvent,
   fetchEvent,
   searchEvent,
-  fetchEventbyID,
+  fetchEventbyID
 };
