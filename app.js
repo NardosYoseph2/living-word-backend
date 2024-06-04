@@ -6,7 +6,8 @@ const paymentRoutes = require('./routes/payment_route');
 const cors = require('cors');
 
 app.use(express.json()); // Parse JSON request bodies
-  app.use(cors({ origin: ['http://localhost:3000', 'https://livingword.vercel.app/'] }));
+  // app.use(cors({ origin: ['http://localhost:3000', 'https://livingword.vercel.app/'] }));
+  app.use(cors( { origin: '*' }))
  
 app.use('/public', express.static(__dirname + "/public"))
 // Mount user routes
