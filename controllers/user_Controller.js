@@ -6,7 +6,7 @@ const dbConnection = require('../config/database')
 async function register(req, res) {
  
     try {
-        const { firstname,lastname, email, password,role } = req.body;
+        const { firstname,lastname, email, password,role ,branch} = req.body;
         console.log(req.body);
 
         const newUser = await userService.registerUser(firstname,lastname, email, password,role);
