@@ -39,7 +39,7 @@ async function fetchUser() {
 }
 async function deleteUser(userId){
   dbConnection;
-  const result= await Event.deleteOne({ _id:userId });
+  const result= await User.deleteOne({ _id:userId });
   return result;
 }
 async function fetchUserbyID(userID) {
