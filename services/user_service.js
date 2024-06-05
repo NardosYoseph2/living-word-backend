@@ -5,17 +5,17 @@ const dbConnection = require('../config/database');
 const mongoose = require('mongoose');
 const user = mongoose.model('User');
 
-async function registerUser(firstname,lastname,email, password,role) {
+async function registerUser(firstname,lastname,email, password,role,branch) {
  
   dbConnection
-  console.log(firstname)
+  console.log(branch)
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     throw new Error('Email already exists');
   }
 
   const hashedPassword = await bcryptjs.hash(password, 10);
-  const user = new User({firstname,lastname, email, password: hashedPassword ,role});
+  const user = new User({firstname,lastname, email, password: hashedPassword ,role,branch});
   await user.save();
   return user;
 }
