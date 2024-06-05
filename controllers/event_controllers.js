@@ -59,7 +59,7 @@ async function fetchEventbyID(req, res) {
 
 async function deleteEvent(req, res) {
   try {
-      const event = await eventService.deleteEvent(req.body.id);
+      const event = await eventService.deleteEvent(req.body.eventId);
     console.log('Event deleted successfully');
 
       res.status(200).json({ message: 'Event deleted successfully',event: event });

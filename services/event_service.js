@@ -39,6 +39,7 @@ async function searchEvent(searchTerm) {
 module.exports = {
   createEvent,
   fetchEvent,
+  deleteEvent,
   searchEvent,
   fetchEventbyID
 };
