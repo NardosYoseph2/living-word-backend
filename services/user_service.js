@@ -37,10 +37,10 @@ async function fetchUser() {
   const users = await User.find();
   return users;
 }
-async function fetchEventOrganizers() {
-  dbConnection; 
-  const EventOrganizers = await User.find({role:"EVENT_ORGANIZER"});
-  return EventOrganizers;
+async function deleteUser(userId){
+  dbConnection;
+  const result= await Event.deleteOne({ _id:userId });
+  return result;
 }
 async function fetchUserbyID(userID) {
   dbConnection
@@ -71,7 +71,7 @@ module.exports = {
   registerUser,
   loginUser,
   fetchUser,
+  deleteUser,
   fetchUserbyID,
   findUserEvents,
-  fetchEventOrganizers
 };

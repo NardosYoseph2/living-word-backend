@@ -53,12 +53,12 @@ async function fetchUser(req, res) {
         const formattedUserList = await Promise.all(userList.map(async user => {
           return {
             _id: user._doc._id,
-            username:user._doc.username,
-            profilePicture: user._doc.profilePicture,
+            firstname: user._doc.firstname,
+            lastname: user._doc.lastname,
             email: user._doc.email,
             password: user._doc.password,
             role: user._doc.role,
-            events: user._doc.events,
+            branch: user._doc.branch
           }; 
         }));
       console.log('Users fetched successfully');
@@ -69,25 +69,14 @@ async function fetchUser(req, res) {
       res.status(500).json({ error: 'Internal server error' });
     }
   }
-  async function fetchEventOrganizers(req, res) {
+  async function deleteUser(req, res) {
     try {
-        const EventOrganizersList = await userService.fetchEventOrganizers();
-        const formattedUserList = await Promise.all(EventOrganizersList.map(async user => {
-          return {
-            _id: user._doc._id,
-            username:user._doc.username,
-            profilePicture: user._doc.profilePicture,
-            email: user._doc.email,
-            password: user._doc.password,
-            role: user._doc.role,
-            events: user._doc.events,
-          }; 
-        }));
-      console.log('EventOrganizers fetched successfully');
-        
-        res.status(200).json({ message: 'EventOrganizers fetched successfully',EventOrganizersList: formattedUserList });
+        const event = await userService.deleteUser(req.body.userId);
+      console.log('USer deleted successfully');
+  
+        res.status(200).json({ message: 'User deleted successfully',event: event });
     } catch (err) {
-      console.error('Error fetching EventOrganizers:', err);
+      console.error('Error deleting user:', err);
       res.status(500).json({ error: 'Internal server error' });
     }
   }
@@ -121,6 +110,6 @@ module.exports = {
     refreshToken,
     fetchUser,
     fetchUserbyID,
+    deleteUser,
     findUserEvents,
-    fetchEventOrganizers
 };
