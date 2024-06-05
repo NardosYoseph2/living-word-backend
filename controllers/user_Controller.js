@@ -9,7 +9,7 @@ async function register(req, res) {
         const { firstname,lastname, email, password,role ,branch} = req.body;
         console.log(req.body);
 
-        const newUser = await userService.registerUser(firstname,lastname, email, password,role);
+        const newUser = await userService.registerUser(firstname,lastname, email, password,role,branch);
         res.json({ message: 'User registered successfully!', data: newUser });
     } catch (err) {
         res.status(err.status || 500).json({ message: err.message });
