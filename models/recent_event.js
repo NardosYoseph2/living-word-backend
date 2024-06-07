@@ -9,4 +9,3 @@ const recentEventSchema = new mongoose.Schema({
   const RecentEvent = mongoose.model('RecentEvent', recentEventSchema);
   module.exports=RecentEvent
 
-  

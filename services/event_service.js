@@ -22,6 +22,11 @@ async function fetchEvent() {
   const events = await Event.find();
   return events;
 }
+async function fetchRecentEvent() {
+  dbConnection; 
+  const events = await RecentEvent.find();
+  return events;
+}
 async function fetchEventbyID(eventID) {
   dbConnection; 
   const event = await Event.findOne({_id:eventID});
@@ -50,5 +55,6 @@ module.exports = {
   deleteEvent,
   addRecentEvent,
   searchEvent,
-  fetchEventbyID
+  fetchEventbyID,
+  fetchRecentEvent
 };

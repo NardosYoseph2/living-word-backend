@@ -38,16 +38,9 @@ async function fetchEvent(req, res) {
           description: event._doc.description,
           date: event._doc.date,
           time: event._doc.time,
-         // people: event._doc.people,
           image:  event._doc.image,
           address: event._doc.address,
           category:event._doc.category
-         // price: event._doc.price,
-          //availableTickets:event._doc.availableTickets,
-          //eventorganizer:event._doc.eventorganizer,
-         //attendees:event._doc.attendees,
-         //status:event._doc.status
-
         }; 
       }));
     console.error('Event fetched successfully');
@@ -58,6 +51,31 @@ async function fetchEvent(req, res) {
     res.status(500).json({ error: 'Internal server error' });
   }
 }
+
+
+async function fetchRecentEvent(req, res) {
+  try {
+      const eventList = await eventService.fetchRecentEvent();
+      const formattedEventList = await Promise.all(eventList.map(async RecentEvent => {
+        return {
+          _id: RecentEvent._doc._id,
+          title:RecentEvent._doc.title,
+          description: RecentEvent._doc.description,
+          thumbnail:  RecentEvent._doc.thumbnail,
+          video: RecentEvent._doc.video,
+        }; 
+      }));
+    console.error('Event fetched successfully');
+      
+      res.status(200).json({ message: 'Event fetched successfully',eventList: formattedEventList });
+  } catch (err) {
+    console.error('Error fetching event:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+
+
 async function fetchEventbyID(req, res) {
   try {
       const event = await eventService.fetchEventbyID(req.body.id);
@@ -83,17 +101,6 @@ async function deleteEvent(req, res) {
   }
 }
 
-// async function buyTicket(eventId, userId) {
-//   try {
-//     const eventPurchased = await eventService.buyTicket(eventId,userId);
-//     console.log('Ticket purchased successfully!');
-//     return eventPurchased;
- 
-//   } catch (error) {
-//     console.error('Error purchasing ticket:', error);
-//   }
-// }
-
 async function searchEvent(req, res) {
   const searchTerm = req.query.q; // Access search term from query parameter
 console.log(req.query)
@@ -111,6 +118,7 @@ console.log(req.query)
 module.exports = {
   createEvent,
   fetchEvent,
+  fetchRecentEvent,
   searchEvent,
   deleteEvent,
   addRecentEvent,

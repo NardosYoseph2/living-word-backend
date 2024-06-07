@@ -10,6 +10,7 @@ router.post('/event',passport.authenticate('jwt', { session: false }),eventContr
 router.get('/search',passport.authenticate('jwt', { session: false }),eventController.searchEvent);
 router.post('/delete',passport.authenticate('jwt', { session: false }),eventController.deleteEvent);
 router.post('/addRecentEvent',passport.authenticate('jwt', { session: false }),eventController.addRecentEvent);
+router.post('/fetchRecentEvent', eventController.fetchRecentEvent);
 
 
 module.exports = router;
