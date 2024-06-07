@@ -14,6 +14,20 @@ async function createEvent(req, res) {
     res.status(500).json({ error: err.message });
   }
 }
+
+async function addRecentEvent(req, res) {
+  try {
+      const eventData =req.body;
+      console.log(eventData)
+      const newEvent = await eventService.addRecentEvent(eventData);
+      res.status(200).json({ message: 'Event created successfully' , newEvent});
+  } catch (err) {
+    console.error('Error creating event:', err);
+    res.status(500).json({ error: err.message });
+  }
+}
+
+
 async function fetchEvent(req, res) {
   try {
       const eventList = await eventService.fetchEvent();
@@ -99,5 +113,6 @@ module.exports = {
   fetchEvent,
   searchEvent,
   deleteEvent,
+  addRecentEvent,
   fetchEventbyID
 }

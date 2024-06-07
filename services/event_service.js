@@ -1,4 +1,5 @@
 const Event = require('../models/event'); 
+const RecentEvent = require('../models/recent_event'); 
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const dbConnection = require('../config/database'); 
@@ -6,6 +7,13 @@ const dbConnection = require('../config/database');
 async function createEvent(eventData) {
   dbConnection; 
   const event = new Event(eventData);
+  await event.save();
+  return event;
+}
+
+async function addRecentEvent(eventData) {
+  dbConnection; 
+  const event = new RecentEvent(eventData);
   await event.save();
   return event;
 }
@@ -40,6 +48,7 @@ module.exports = {
   createEvent,
   fetchEvent,
   deleteEvent,
+  addRecentEvent,
   searchEvent,
   fetchEventbyID
 };
