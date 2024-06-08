@@ -101,6 +101,18 @@ async function deleteEvent(req, res) {
   }
 }
 
+async function deleteRecentEvent(req, res) {
+  try {
+      const event = await eventService.deleteRecentEvent(req.body.eventId);
+    console.log('Event deleted successfully');
+
+      res.status(200).json({ message: 'Event deleted successfully',event: event });
+  } catch (err) {
+    console.error('Error deleting event:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 async function searchEvent(req, res) {
   const searchTerm = req.query.q; // Access search term from query parameter
 console.log(req.query)
@@ -122,5 +134,6 @@ module.exports = {
   searchEvent,
   deleteEvent,
   addRecentEvent,
-  fetchEventbyID
+  fetchEventbyID,
+  deleteRecentEvent
 }

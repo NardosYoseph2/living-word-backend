@@ -37,6 +37,12 @@ async function deleteEvent(eventId){
   const result= await Event.deleteOne({ _id:eventId });
   return result;
 }
+async function deleteRecentEvent(eventId){
+  dbConnection;
+  const result= await RecentEvent.deleteOne({ _id:eventId });
+  return result;
+}
+
 async function searchEvent(searchTerm) {
   dbConnection; 
   const query = {
@@ -56,5 +62,6 @@ module.exports = {
   addRecentEvent,
   searchEvent,
   fetchEventbyID,
-  fetchRecentEvent
+  fetchRecentEvent,
+  deleteRecentEvent
 };
