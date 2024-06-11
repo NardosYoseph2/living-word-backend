@@ -32,6 +32,20 @@ async function login(req, res) {
         res.status(err.status || 401).json({ message: err.message });
     }
  }
+ async function forgotPassword(req, res) {
+    
+  
+  try {
+      const { email} = req.body;
+      const loggedInUser = await userService.forgotPassword(email);
+      console.log('email sent successful');
+
+      res.json({ message: 'email sent successful!'});
+  } catch (err) {
+      res.status(err.status || 401).json({ message: err.message });
+  }
+}
+
 
  async function refreshToken(req, res) {
     
@@ -112,4 +126,5 @@ module.exports = {
     fetchUserbyID,
     deleteUser,
     findUserEvents,
+    forgotPassword
 };

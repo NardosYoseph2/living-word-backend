@@ -32,6 +32,32 @@ async function loginUser(email, password) {
   }
   return user;
 }
+
+
+
+
+async function forgotPassword(email) {
+  dbConnection
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+  const resetToken = crypto.randomBytes(20).toString('hex');
+  user.resetPasswordToken = resetToken;
+  user.resetPasswordExpires = Date.now() + 3600000; // Token expires in 1 hour
+  await user.save();
+
+  const resetURL = `http://localhost:3000/pages/users/reset-password/${resetToken}`;
+  const message = `Forgot your password? Click this <a href="${resetURL}">link</a> to reset it.`;
+
+  await sendMail({
+    to: user.email,
+    subject: 'Password Reset',
+    html: message,
+  });
+
+
+}
 async function fetchUser() {
   dbConnection; 
   const users = await User.find();
@@ -74,4 +100,5 @@ module.exports = {
   deleteUser,
   fetchUserbyID,
   findUserEvents,
+  forgotPassword
 };

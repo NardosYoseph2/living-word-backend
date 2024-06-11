@@ -12,6 +12,7 @@ router.post('/singleUser',passport.authenticate('jwt', { session: false }), user
 router.get('/AllUsers',passport.authenticate('jwt', { session: false }), userController.fetchUser);
 router.get('/findUserEvents/:userId',passport.authenticate('jwt', { session: false }), userController.findUserEvents);
 router.post('/deleteUser',passport.authenticate('jwt', { session: false }), userController.deleteUser);
+router.post('/forgotPassword', userController.forgotPassword);
 
 
 
