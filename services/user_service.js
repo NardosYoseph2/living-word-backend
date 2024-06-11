@@ -4,6 +4,8 @@ const bcryptjs = require('bcryptjs');
 const dbConnection = require('../config/database'); 
 const mongoose = require('mongoose');
 const user = mongoose.model('User');
+const sendMail = require('../utils/sendMail');
+const crypto = require('crypto');
 
 async function registerUser(firstname,lastname,email, password,role,branch) {
  
