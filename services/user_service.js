@@ -42,7 +42,7 @@ async function forgotPassword(email) {
   dbConnection
   const user = await User.findOne({ email });
   if (!user) {
-    return res.status(404).json({ error: 'User not found' });
+    throw new Error('User not found');
   }
   const resetToken = crypto.randomBytes(20).toString('hex');
   user.resetPasswordToken = resetToken;
